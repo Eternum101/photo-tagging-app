@@ -1,7 +1,9 @@
 require('dotenv').config();
 
 const express = require('express');
+const cors = require('cors');
 const app = express();
+app.use(cors()); 
 const port = process.env.PORT || 5000;
 
 const mongoose = require('mongoose');
@@ -11,6 +13,12 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.use(express.json());
+
+app.use('/images', express.static('public/images'));
+
+const characterRoutes = require('./routes/characterRoutes');
+
+app.use('/api/character', characterRoutes);
 
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`)

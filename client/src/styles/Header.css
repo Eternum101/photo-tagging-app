@@ -1,0 +1,66 @@
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 30px;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.logo {
+    font-size: 1.8rem;
+}
+
+.logo h1 {
+    font-family: 'Titan One', sans-serif;
+}
+
+.nav-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-right h3 {
+    font-size: 1rem;
+    padding: 5px;
+    transition: all 0.3s ease;
+    width: 115px;
+    text-align: center;
+}
+
+.nav-right h3:hover {
+    background-color: rgb(255, 0, 85);
+    padding: 5px;
+    border-radius: 2px;
+    width: 115px;
+    cursor: pointer;
+}
+
+.image-container {
+    display: flex;
+    background-color: rgb(59, 59, 59);
+    box-shadow: 20px 10px rgb(255, 0, 85);
+    border: 2px solid #000000;
+    padding: 15px;
+    gap: 20px;
+    border-radius: 10px;
+}
+
+.character-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+}
+
+.character-container img {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+}

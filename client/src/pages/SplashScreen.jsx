@@ -1,12 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaCaretRight } from "react-icons/fa6";
 import '../styles/SplashScreen.css';
 import headingImage from '../assets/images/carmen.png';
 import levelOneImage from '../assets/images/wimmelbilder-level-1.jpg';
 import levelTwoImage from '../assets/images/wimmelbilder-level-2.png';
 import levelThreeImage from '../assets/images/wimmelbilder-level-3.jpg';
+import { useNavigate } from 'react-router-dom';
 
-function SplashScreen() {
+function SplashScreen({setLevel, setIsGameStarted}) {
+
+    useEffect(() => {
+        setIsGameStarted(false);
+      }, []);    
+
+    const navigate = useNavigate();
+
+    const handleLevelSelection = (selectedLevel) => {
+        setLevel(selectedLevel);
+        navigate('/game');
+    };
+
    const descriptionInfo = {
         'Objective': 'The main objective of the game is to find specific characters or items hidden within a larger image. The character or item you’re looking for will be given to you at the start of each level.',
         'Instructions': [
@@ -28,22 +41,6 @@ function SplashScreen() {
     const [activeButton, setActiveButton] = useState('Objective');
     return (
         <>
-        <header>
-            <nav>
-                <div className="logo">
-                    <h1>PhotoTagApp.</h1>
-                </div>
-                <div className="nav-right">
-                    <h3>Home</h3>
-                    <h3 onClick={() => document.getElementById('how-to-play').scrollIntoView({ behavior: 'smooth' })}>
-                        How to Play
-                    </h3>
-                    <h3 onClick={() => document.getElementById('select-level').scrollIntoView({ behavior: 'smooth' })}>
-                        Select Level
-                    </h3>
-                </div>
-            </nav>
-        </header>
         <div className='heading-container'>
             <div className='heading-info'>
                 <h3>SCORE ON THE LEADERBOARD</h3>
@@ -113,7 +110,7 @@ function SplashScreen() {
                 <div className='level-info'>
                     <h2>Level 1</h2>
                     <p>Difficulty: Easy</p>
-                    <button className='btn-start'>
+                    <button className='btn-start' onClick={() => handleLevelSelection(1)}>
                         <FaCaretRight />
                         Start Level 1
                     </button>
@@ -126,7 +123,7 @@ function SplashScreen() {
                 <div className='level-info'>
                     <h2>Level 2</h2>
                     <p>Difficulty: Medium</p>
-                    <button className='btn-start'>
+                    <button className='btn-start' onClick={() => handleLevelSelection(2)}>
                         <FaCaretRight />
                         Start Level 2
                     </button>
@@ -139,7 +136,7 @@ function SplashScreen() {
                 <div className='level-info'>
                     <h2>Level 3</h2>
                     <p>Difficulty: Hard</p>
-                    <button className='btn-start'>
+                    <button className='btn-start' onClick={() => handleLevelSelection(3)}>
                         <FaCaretRight />
                         Start Level 3
                     </button>
