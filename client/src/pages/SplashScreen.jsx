@@ -39,6 +39,7 @@ function SplashScreen({setLevel, setIsGameStarted}) {
 
     const [descriptionKey, setDescriptionKey] = useState('Objective'); 
     const [activeButton, setActiveButton] = useState('Objective');
+    
     return (
         <>
         <div className='heading-container'>
