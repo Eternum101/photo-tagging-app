@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Header.css'; 
+import useGameTimer from '../hooks/useGameTimer';
 
 function Header({ isGameStarted, characterImage }) {
-    return (
+      const time = useGameTimer(isGameStarted);
+
+      return (
         <header>
             <nav>
                 <div className="logo">
@@ -22,14 +25,19 @@ function Header({ isGameStarted, characterImage }) {
                         </>
                     )}
                     {isGameStarted && (
-                        <div className='image-container'>
-                            {characterImage.map((character, index) => (
-                                <div className='character-container' key={index}>
-                                    <img src={`/${character.image}`} alt={character.name} />
-                                    <p>{character.name}</p>
-                                </div>
-                            ))}
+                        <>
+                        <div className='nav-right-game'>
+                            <div className='timer'>{time}</div>
+                            <div className='image-container'>
+                                {characterImage.map((character, index) => (
+                                    <div className='character-container' key={index}>
+                                        <img src={`/${character.image}`} alt={character.name} />
+                                        <p>{character.name}</p>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
+                        </>
                     )}
                 </div>
             </nav>

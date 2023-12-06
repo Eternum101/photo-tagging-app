@@ -3,3 +3,26 @@ img {
     height: auto;
     cursor: crosshair;
 }
+
+.character-box {
+    position: absolute;
+    background-color: rgb(59, 59, 59);
+    border: 2px solid #000000;
+    padding: 10px;
+    border-radius: 10px;
+}
+  
+.character {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+    gap: 20px;
+    padding: 5px;
+}
+
+.character img {
+    width: 40px;
+    height: 50px;
+    border-radius: 10px;
+}

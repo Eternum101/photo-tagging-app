@@ -41,6 +41,13 @@ a {
     cursor: pointer;
 }
 
+.nav-right-game {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 200px;
+}
+
 .image-container {
     display: flex;
     background-color: rgb(59, 59, 59);
@@ -63,4 +70,9 @@ a {
     width: 50px;
     height: 60px;
     border-radius: 10px;
+}
+
+.timer {
+    width: 6ch;
+    font-size: 2rem;
 }

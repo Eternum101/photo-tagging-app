@@ -13,3 +13,9 @@ exports.getCharactersByLevel = (req, res) => {
     .then(characters => res.json(characters))
     .catch(error => res.status(500).json({ message: error.message }));
 };
+
+exports.getAllCharacters = (req, res) => {
+  Character.find()
+    .then(characters => res.json(characters))
+    .catch(error => res.status(500).json({ message: error.message }));
+};
