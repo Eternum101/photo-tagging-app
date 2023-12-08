@@ -8,6 +8,7 @@ function App() {
   const [isGameStarted, setIsGameStarted] = useState(false);
   const [level, setLevel] = useState(1);
   const [characterImage, setCharacterImage] = useState([]);
+  const [isGameCompleted, setIsGameCompleted] = useState(false);
   
   useEffect(() => {
     if (isGameStarted) {
@@ -20,10 +21,10 @@ function App() {
 
   return (
     <Router>
-      <Header isGameStarted={isGameStarted} setIsGameStarted={setIsGameStarted} characterImage={characterImage}/>
+      <Header isGameStarted={isGameStarted} setIsGameStarted={setIsGameStarted} characterImage={characterImage} isGameCompleted={isGameCompleted}/>
       <Routes>
         <Route path='/' element={<SplashScreen setLevel={setLevel} setIsGameStarted={setIsGameStarted}/>}></Route>
-        <Route path='/game' element={<Game isGameStarted={isGameStarted} setIsGameStarted={setIsGameStarted} level={level}/>}/>
+        <Route path='/game' element={<Game isGameStarted={isGameStarted} setIsGameStarted={setIsGameStarted} level={level} setIsGameCompleted={setIsGameCompleted}/>}/>
       </Routes>
     </Router>
   )

@@ -17,8 +17,10 @@ app.use(express.json());
 app.use('/images', express.static('public/images'));
 
 const characterRoutes = require('./routes/characterRoutes');
+const userScoreRoutes = require('./routes/userScoreRoutes');
 
 app.use('/api/character', characterRoutes);
+app.use('/api/scores', userScoreRoutes);
 
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`)

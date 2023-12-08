@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import '../styles/Header.css'; 
 import useGameTimer from '../hooks/useGameTimer';
 
-function Header({ isGameStarted, characterImage }) {
-      const time = useGameTimer(isGameStarted);
+function Header({ isGameStarted, characterImage, isGameCompleted }) {
+      const time = useGameTimer(isGameStarted, isGameCompleted);
 
       return (
         <header>
@@ -15,13 +15,13 @@ function Header({ isGameStarted, characterImage }) {
                 <div className="nav-right">
                     {!isGameStarted && (
                         <>
-                            <h3>Home</h3>
                             <h3 onClick={() => document.getElementById('how-to-play').scrollIntoView({ behavior: 'smooth' })}>
                                 How to Play
                             </h3>
                             <h3 onClick={() => document.getElementById('select-level').scrollIntoView({ behavior: 'smooth' })}>
                                 Select Level
                             </h3>
+                            <h3>Leaderboard</h3>
                         </>
                     )}
                     {isGameStarted && (

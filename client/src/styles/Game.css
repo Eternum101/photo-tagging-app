@@ -1,3 +1,7 @@
+.game-container {
+    position: relative;
+}
+
 img {
     width: 100%;
     height: auto;
@@ -7,22 +11,34 @@ img {
 .character-box {
     position: absolute;
     background-color: rgb(59, 59, 59);
-    border: 2px solid #000000;
-    padding: 10px;
     border-radius: 10px;
 }
   
 .character {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
     cursor: pointer;
-    gap: 20px;
-    padding: 5px;
+    gap: 15px;
+    padding: 10px;
+    border-radius: 10px;
+    transition: all 150ms ease-in-out;
+}
+
+.character:hover {
+    background-color: rgb(255, 0, 85);
+    border-radius: 10px;
+    padding: 10px;
 }
 
 .character img {
     width: 40px;
     height: 50px;
     border-radius: 10px;
+}
+
+.found-marker {
+    font-size: 3rem;
+    position: absolute;
+    color: red;
+    transform: translate(-50%, -50%);
 }
