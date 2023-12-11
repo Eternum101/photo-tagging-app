@@ -21,7 +21,7 @@ function Header({ isGameStarted, characterImage, isGameCompleted }) {
                             <h3 onClick={() => document.getElementById('select-level').scrollIntoView({ behavior: 'smooth' })}>
                                 Select Level
                             </h3>
-                            <h3>Leaderboard</h3>
+                           <h3 onClick={() => document.getElementById('leaderboard').scrollIntoView({ behavior: 'smooth' })}>Leaderboard</h3>
                         </>
                     )}
                     {isGameStarted && (

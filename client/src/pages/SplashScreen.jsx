@@ -6,11 +6,14 @@ import levelOneImage from '../assets/images/wimmelbilder-level-1.jpg';
 import levelTwoImage from '../assets/images/wimmelbilder-level-2.png';
 import levelThreeImage from '../assets/images/wimmelbilder-level-3.jpg';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios'; 
+import { formatTime } from '../hooks/timeFormat';
 
 function SplashScreen({setLevel, setIsGameStarted}) {
 
     useEffect(() => {
         setIsGameStarted(false);
+        fetchLeaderboard(1);
       }, []);    
 
     const navigate = useNavigate();
@@ -40,6 +43,18 @@ function SplashScreen({setLevel, setIsGameStarted}) {
     const [descriptionKey, setDescriptionKey] = useState('Objective'); 
     const [activeButton, setActiveButton] = useState('Objective');
     
+    const [leaderboardData, setLeaderboardData] = useState([]);
+    const [selectedLeaderboard, setSelectedLeaderboard] = useState(1);
+
+    const fetchLeaderboard = async (level) => {
+        try {
+          const response = await axios.get(`/api/scores/leaderboard/${level}`);
+          setLeaderboardData(response.data);
+        } catch (error) {
+          console.error(error);
+        }
+      };     
+
     return (
         <>
         <div className='heading-container'>
@@ -144,6 +159,61 @@ function SplashScreen({setLevel, setIsGameStarted}) {
                 </div>
             </div>
         </div>
+    </div>
+    <div className='leaderboard-container' id='leaderboard'>
+            <div className='levels-header'>
+                <h1>Leaderboard</h1>
+            </div>
+        <div className="leaderboard-card-container">
+        <div className={`leaderboard-card ${selectedLeaderboard === 1 ? 'selected' : ''}`} 
+             onClick={() => {fetchLeaderboard(1); setSelectedLeaderboard(1);}}>
+                <div className='level-image'>
+                    <img src={levelOneImage} alt="Level One"/>
+                </div>
+                <div className='level-info'>
+                    <h2>Level 1</h2>
+                </div>
+            </div>
+            <div className={`leaderboard-card ${selectedLeaderboard === 2 ? 'selected' : ''}`} 
+                 onClick={() => {fetchLeaderboard(2); setSelectedLeaderboard(2);}}>
+                <div className='level-image'>
+                    <img src={levelTwoImage} alt="Level Two"/>
+                </div>
+                <div className='level-info'>
+                    <h2>Level 2</h2>
+                </div>
+            </div>
+            <div className={`leaderboard-card ${selectedLeaderboard === 3 ? 'selected' : ''}`} 
+                 onClick={() => {fetchLeaderboard(3); setSelectedLeaderboard(3);}}>
+                <div className='level-image'>
+                    <img src={levelThreeImage} alt="Level Three"/>
+                </div>
+                <div className='level-info'>
+                    <h2>Level 3</h2>
+                </div>
+            </div>
+        </div>
+    <h2 className='h2-leaderboard'>Level {selectedLeaderboard} Leaderboard</h2>
+    <div className='leaderboard-table-container'>
+        <table className='leaderboard-table'>
+        <thead>
+          <tr>
+            <th>Place</th>
+            <th>Username</th>
+            <th>Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          {leaderboardData.map((score, index) => (
+            <tr key={index}>
+              <td>{score.place}</td>
+              <td>{score.username}</td>
+              <td>{formatTime(score.time)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      </div>
     </div>
         </>
     )

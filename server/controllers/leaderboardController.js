@@ -17,3 +17,22 @@ exports.addScore = (req, res) => {
     });
 };
 
+exports.getLeaderboard = (req, res) => {
+  const selectedLevel = req.params.level;
+
+  UserScore.find({ level: selectedLevel }).sort('time')
+    .then(scores => {
+      scores = scores.map((score, index) => {
+        score = score.toObject();
+        score.place = index + 1;
+        return score;
+      });
+
+      res.status(200).json(scores);
+    })
+    .catch(err => {
+      res.status(500).json({ message: err.message });
+    });
+};
+
+
