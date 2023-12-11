@@ -1,3 +1,10 @@
+header.sticky {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: #000000;
+}
+
 nav {
     display: flex;
     align-items: center;
@@ -53,8 +60,7 @@ a {
     background-color: rgb(59, 59, 59);
     box-shadow: 20px 10px rgb(255, 0, 85);
     border: 2px solid #000000;
-    padding: 15px;
-    gap: 20px;
+    padding: 15px; 
     border-radius: 10px;
 }
 
@@ -75,58 +81,4 @@ a {
 .timer {
     width: 6ch;
     font-size: 2rem;
-}
-
-@media (max-width: 768px) {
-    nav {
-        flex-direction: column;
-        padding: 15px;
-    }
-
-    .nav-right,
-    .nav-right-game {
-        flex-direction: column;
-        gap: 10px;
-    }
-    
-    .image-container,
-    .character-container {
-        flex-direction: column;
-    }
-
-    .character-container img {
-        width: 40px;
-        height: 48px;
-    }
-
-    .timer {
-        font-size: 1.5rem;
-    }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-    nav {
-        flex-direction: column;
-        padding: 15px;
-    }
-
-    .nav-right,
-    .nav-right-game {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .image-container,
-    .character-container {
-        gap: 15px;
-    }
-
-    .character-container img {
-        width: 45px;
-        height: 54px;
-    }
-
-    .timer {
-        font-size: 1.75rem;
-    }
 }

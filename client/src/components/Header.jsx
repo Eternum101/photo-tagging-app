@@ -7,7 +7,7 @@ function Header({ isGameStarted, characterImage, isGameCompleted }) {
       const time = useGameTimer(isGameStarted, isGameCompleted);
 
       return (
-        <header>
+        <header className={isGameStarted ? 'sticky' : ''}>
             <nav>
                 <div className="logo">
                     <Link to='/'><h1>PhotoTagApp.</h1></Link>

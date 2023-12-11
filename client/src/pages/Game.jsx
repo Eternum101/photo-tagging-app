@@ -24,7 +24,9 @@ function Game({ isGameStarted, setIsGameStarted, level }) {
   const navigate = useNavigate();
 
   const [foundCoordinates, setFoundCoordinates] = useState([]);
-  
+  const [popupMessage, setPopupMessage] = useState(null);
+  const [isCharacterFound, setIsCharacterFound] = useState(null);
+
   useEffect(() => {
     setIsGameStarted(true);
   }, []);
@@ -60,7 +62,6 @@ function Game({ isGameStarted, setIsGameStarted, level }) {
       if (isCharacterBoxVisible && rect) {
         const characterBox = document.querySelector('.character-box');
         if (characterBox) {
-          // Call the function with the necessary arguments
           adjustCharacterBoxPosition(clickX, clickY, characterBox, rect);
         }
       }
@@ -83,19 +84,23 @@ function Game({ isGameStarted, setIsGameStarted, level }) {
   }, [isCharacterBoxVisible, clickX, clickY, rect]);
 
   const adjustCharacterBoxPosition = (clickX, clickY, characterBox, imageRect) => {
-  const gap = 50;
-  let left = clickX;
-
-  if (left + characterBox.offsetWidth + gap > imageRect.right) {
-    left = imageRect.right - characterBox.offsetWidth - gap;
-  }
-
-  if (left - gap < imageRect.left) {
-    left = imageRect.left + gap;
-  }
-
-  characterBox.style.left = `${left}px`;
-};
+    if (!characterBox) {
+      return;
+    }
+    
+    const gap = 50;
+    let left = clickX;
+  
+    if (left + characterBox.offsetWidth + gap > imageRect.right) {
+      left = imageRect.right - characterBox.offsetWidth - gap;
+    }
+  
+    if (left - gap < imageRect.left) {
+      left = imageRect.left + gap;
+    }
+  
+    characterBox.style.left = `${left}px`;
+  };
 
   const handleCharacterSelect = (character) => {
     if (rect) {
@@ -107,6 +112,8 @@ function Game({ isGameStarted, setIsGameStarted, level }) {
   
       if (dx < 3 && dy < 3) {
         console.log(`You found ${character.name} at (${clickXPercent.toFixed(2)}%, ${clickYPercent.toFixed(2)}%)`);
+        setPopupMessage(`You found ${character.name}!`);
+        setIsCharacterFound(true); 
         setFoundCharacter(prevFound => {
           const updatedFound = [...prevFound, character.name];
           if (updatedFound.length === characters.length) {
@@ -117,11 +124,12 @@ function Game({ isGameStarted, setIsGameStarted, level }) {
         setFoundCoordinates(prevCoords => [...prevCoords, { x: character.coordinates.x, y: character.coordinates.y }]);
       } else {
         console.log(`Sorry, ${character.name} is not at (${clickXPercent.toFixed(2)}%, ${clickYPercent.toFixed(2)}%)`);
+        setPopupMessage(`Sorry, ${character.name} is not here.`);
+        setIsCharacterFound(false);
       }
     }
     setIsCharacterBoxVisible(false);
   };
-
 
   const handleSubmit = async () => {
     if (!username) {
@@ -144,6 +152,14 @@ function Game({ isGameStarted, setIsGameStarted, level }) {
       console.error('Error submitting score:', error);
     }
   };
+
+  useEffect(() => {
+    if (popupMessage) {
+      setTimeout(() => {
+        setPopupMessage(null);
+      }, 1000);
+    }
+  }, [popupMessage]);
   
   let image;
   switch (level) {
@@ -162,6 +178,11 @@ function Game({ isGameStarted, setIsGameStarted, level }) {
 
   return (
     <div className='game-container'>
+    {popupMessage && (
+      <div className={`popup ${isCharacterFound ? 'found' : 'not-found'}`}>
+    {popupMessage}
+      </div>
+    )}
       <img src={image} alt={`Level ${level}`} onClick={handleCharacterClick} />
       {isCharacterBoxVisible && (
   <div className="character-box" style={{ left: clickX, top: clickY }}>

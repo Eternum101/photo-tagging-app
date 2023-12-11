@@ -42,3 +42,24 @@ img {
     color: red;
     transform: translate(-50%, -50%);
 }
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+.popup.found {
+    background-color: rgb(0, 128, 64);
+}
+  
+.popup.not-found {
+    background-color: rgb(214, 0, 0);
+}
