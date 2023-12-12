@@ -26,9 +26,10 @@ function Game({ isGameStarted, setIsGameStarted, level }) {
   const [foundCoordinates, setFoundCoordinates] = useState([]);
   const [popupMessage, setPopupMessage] = useState(null);
   const [isCharacterFound, setIsCharacterFound] = useState(null);
-
+  
   useEffect(() => {
     setIsGameStarted(true);
+    window.scrollTo(0,0);
   }, []);
 
   const completeGame = () => {
@@ -55,51 +56,6 @@ function Game({ isGameStarted, setIsGameStarted, level }) {
         console.error(error);
       }
     }
-  };
-  
-  useEffect(() => {
-    const adjustCharacterBoxPositionWithGap = () => {
-      if (isCharacterBoxVisible && rect) {
-        const characterBox = document.querySelector('.character-box');
-        if (characterBox) {
-          adjustCharacterBoxPosition(clickX, clickY, characterBox, rect);
-        }
-      }
-    };
-  
-    adjustCharacterBoxPositionWithGap();
-
-    window.addEventListener('resize', adjustCharacterBoxPosition);
-  
-    const handleResize = () => {
-      setIsCharacterBoxVisible(false);
-    };
-  
-    window.addEventListener('resize', handleResize);
-  
-    return () => {
-      window.removeEventListener('resize', adjustCharacterBoxPosition);
-      window.removeEventListener('resize', handleResize);
-    };
-  }, [isCharacterBoxVisible, clickX, clickY, rect]);
-
-  const adjustCharacterBoxPosition = (clickX, clickY, characterBox, imageRect) => {
-    if (!characterBox) {
-      return;
-    }
-    
-    const gap = 50;
-    let left = clickX;
-  
-    if (left + characterBox.offsetWidth + gap > imageRect.right) {
-      left = imageRect.right - characterBox.offsetWidth - gap;
-    }
-  
-    if (left - gap < imageRect.left) {
-      left = imageRect.left + gap;
-    }
-  
-    characterBox.style.left = `${left}px`;
   };
 
   const handleCharacterSelect = (character) => {
