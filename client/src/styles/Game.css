@@ -15,9 +15,6 @@ img {
 
 .character-box-container {
     position: absolute;
-    max-height: 90vh; /* 90% of the viewport height */
-    max-width: 90vw; /* 90% of the viewport width */
-    overflow: auto; /* Add scrollbars if necessary */
 }
   
 .character {

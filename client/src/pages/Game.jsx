@@ -12,8 +12,6 @@ function Game({ isGameStarted, setIsGameStarted, level }) {
   const [characters, setCharacters] = useState([]);
   const [foundCharacter, setFoundCharacter] = useState([]);
   const [isCharacterBoxVisible, setIsCharacterBoxVisible] = useState(false);
-  const [clickX, setClickX] = useState(0);
-  const [clickY, setClickY] = useState(0);
   const [rect, setRect] = useState(null);
   const [isGameCompleted, setIsGameCompleted] = useState(false);
   
@@ -72,18 +70,14 @@ function Game({ isGameStarted, setIsGameStarted, level }) {
       setTimeout(() => {
         const boxRect = characterBoxRef.current.getBoundingClientRect();
   
-        let left = originalClickX - boxRect.width / 2;
-        if (left < 0) {
-          left = 0;
-        } else if (left + boxRect.width > window.innerWidth) {
-          left = window.innerWidth - boxRect.width;
+        let left = originalClickX;
+        if (left + boxRect.width > window.innerWidth) {
+          left = originalClickX - boxRect.width;
         }
   
-        let top = originalClickY - boxRect.height / 2;
-        if (top < 0) {
-          top = 0;
-        } else if (top + boxRect.height > window.innerHeight) {
-          top = window.innerHeight - boxRect.height;
+        let top = originalClickY;
+        if (top + boxRect.height > window.innerHeight) {
+          top = originalClickY - boxRect.height;
         }
   
         setBoxX(left);

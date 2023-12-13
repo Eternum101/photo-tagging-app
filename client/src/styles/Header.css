@@ -62,6 +62,7 @@ a {
     border: 2px solid #000000;
     padding: 15px; 
     border-radius: 10px;
+    gap: 20px;
 }
 
 .character-container {
