@@ -435,18 +435,20 @@
     }
 
     .level-card-container {
-        flex-direction: column;
-        gap: 50px;
+        gap: 5px;
     }
 
     .level-card {
-        width: 70%;
-        margin: 10px auto;
+        width: 30%;
+        margin: 30px;
+    }
+
+    .level-image {
+        width: 100%;
     }
 
     .level-image img {
         width: 100%;
-        height: auto;
     }
 
     .btn-start {
@@ -454,13 +456,11 @@
     }
 
     .leaderboard-card-container {
-        flex-direction: column;
-        gap: 50px;
+        gap: 10px;
     }
 
     .leaderboard-card {
-        width: 70%;
-        margin: 10px auto;
+        width: 50%;
     }
 
     .leaderboard-table {

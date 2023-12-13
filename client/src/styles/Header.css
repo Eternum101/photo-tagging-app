@@ -82,3 +82,15 @@ a {
     width: 6ch;
     font-size: 2rem;
 }
+
+
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .nav-right {
+        gap: 3px;
+    }
+}
