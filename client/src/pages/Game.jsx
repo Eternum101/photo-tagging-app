@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import levelOneImage from '../assets/images/wimmelbilder-level-1.jpg';
 import levelTwoImage from '../assets/images/wimmelbilder-level-2.png';
 import levelThreeImage from '../assets/images/wimmelbilder-level-3.jpg';
@@ -27,6 +27,13 @@ function Game({ isGameStarted, setIsGameStarted, level }) {
   const [popupMessage, setPopupMessage] = useState(null);
   const [isCharacterFound, setIsCharacterFound] = useState(null);
   
+  const characterBoxRef = useRef(null);
+  const [originalClickX, setOriginalClickX] = useState(0);
+  const [originalClickY, setOriginalClickY] = useState(0);
+
+  const [boxX, setBoxX] = useState(0);
+  const [boxY, setBoxY] = useState(0);
+
   useEffect(() => {
     setIsGameStarted(true);
     window.scrollTo(0,0);
@@ -43,8 +50,8 @@ function Game({ isGameStarted, setIsGameStarted, level }) {
     const x = ((event.clientX - rect.left) / rect.width) * 100;
     const y = ((event.clientY - rect.top) / rect.height) * 100;
   
-    setClickX(event.clientX - rect.left);
-    setClickY(event.clientY - rect.top);
+    setOriginalClickX(event.clientX - rect.left);
+    setOriginalClickY(event.clientY - rect.top);
   
     setIsCharacterBoxVisible(prevVisible => !prevVisible);
   
@@ -56,12 +63,39 @@ function Game({ isGameStarted, setIsGameStarted, level }) {
         console.error(error);
       }
     }
+
+    setIsCharacterBoxVisible(true);
   };
+
+  React.useLayoutEffect(() => {
+    if (isCharacterBoxVisible && characterBoxRef.current) {
+      setTimeout(() => {
+        const boxRect = characterBoxRef.current.getBoundingClientRect();
+  
+        let left = originalClickX - boxRect.width / 2;
+        if (left < 0) {
+          left = 0;
+        } else if (left + boxRect.width > window.innerWidth) {
+          left = window.innerWidth - boxRect.width;
+        }
+  
+        let top = originalClickY - boxRect.height / 2;
+        if (top < 0) {
+          top = 0;
+        } else if (top + boxRect.height > window.innerHeight) {
+          top = window.innerHeight - boxRect.height;
+        }
+  
+        setBoxX(left);
+        setBoxY(top);
+      }, 0);
+    }
+  }, [isCharacterBoxVisible, originalClickX, originalClickY, characterBoxRef]);
 
   const handleCharacterSelect = (character) => {
     if (rect) {
-      const clickXPercent = (clickX / rect.width) * 100;
-      const clickYPercent = (clickY / rect.height) * 100;
+      const clickXPercent = (originalClickX / rect.width) * 100;
+      const clickYPercent = (originalClickY / rect.height) * 100;
   
       const dx = Math.abs(character.coordinates.x - clickXPercent);
       const dy = Math.abs(character.coordinates.y - clickYPercent);
@@ -141,13 +175,15 @@ function Game({ isGameStarted, setIsGameStarted, level }) {
     )}
       <img src={image} alt={`Level ${level}`} onClick={handleCharacterClick} />
       {isCharacterBoxVisible && (
-  <div className="character-box" style={{ left: clickX, top: clickY }}>
-    {characters.filter(character => !foundCharacter.includes(character.name)).map(character => (
-      <div key={character.name} className="character" onClick={() => handleCharacterSelect(character)}>
-        <img src={character.image} alt={character.name} />
-        {character.name}
-      </div>
-    ))}
+  <div className="character-box-container" ref={characterBoxRef} style={{ left: boxX, top: boxY }}>
+    <div className="character-box">
+      {characters.filter(character => !foundCharacter.includes(character.name)).map(character => (
+        <div key={character.name} className="character" onClick={() => handleCharacterSelect(character)}>
+          <img src={character.image} alt={character.name} />
+          {character.name}
+        </div>
+      ))}
+    </div>
   </div>
 )}
     {foundCoordinates.map((coord, index) => (
