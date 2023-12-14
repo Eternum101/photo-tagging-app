@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Header.css'; 
 import useGameTimer from '../hooks/useGameTimer';
+import { IoMdArrowDropdown } from "react-icons/io";
 
 function Header({ isGameStarted, characterImage, isGameCompleted }) {
       const time = useGameTimer(isGameStarted, isGameCompleted);
+
+
+      const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+
+      const toggleDropdown = () => {
+        setIsDropdownVisible(!isDropdownVisible);
+      };
 
       return (
         <header className={isGameStarted ? 'sticky' : ''}>
@@ -24,22 +32,26 @@ function Header({ isGameStarted, characterImage, isGameCompleted }) {
                            <h3 onClick={() => document.getElementById('leaderboard').scrollIntoView({ behavior: 'smooth' })}>Leaderboard</h3>
                         </>
                     )}
-                    {isGameStarted && (
-                        <>
-                        <div className='nav-right-game'>
-                            <div className='timer'>{time}</div>
-                            <div className='image-container'>
-                                {characterImage.map((character, index) => (
-                                    <div className='character-container' key={index}>
-                                        <img src={`/${character.image}`} alt={character.name} />
-                                        <p>{character.name}</p>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                        </>
-                    )}
-                </div>
+{isGameStarted && (
+  <>
+    <div className='nav-right-game'>
+      <button onClick={toggleDropdown} className='dropdown-button'>
+        Characters
+        <IoMdArrowDropdown />
+      </button>
+      <div className='timer'>{time}</div>
+      <div className={`image-container ${isDropdownVisible ? 'show' : ''}`}>
+        {characterImage.map((character, index) => (
+          <div className='character-container' key={index}>
+            <img src={`/${character.image}`} alt={character.name} />
+            <p>{character.name}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </>
+)}
+              </div>
             </nav>
         </header>
     )
