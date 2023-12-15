@@ -4,18 +4,15 @@ import levelTwoImage from '../assets/images/wimmelbilder-level-2.png';
 import levelThreeImage from '../assets/images/wimmelbilder-level-3.jpg';
 import '../styles/Game.css';
 import axios from 'axios'; 
-import useGameTimer from '../hooks/useGameTimer';
 import Modal from '../components/Modal';
 import { useNavigate } from 'react-router-dom';
 
-function Game({ isGameStarted, setIsGameStarted, level }) {
+function Game({ setIsGameStarted, level, setIsGameCompleted, time }) {
   const [characters, setCharacters] = useState([]);
   const [foundCharacter, setFoundCharacter] = useState([]);
   const [isCharacterBoxVisible, setIsCharacterBoxVisible] = useState(false);
   const [rect, setRect] = useState(null);
-  const [isGameCompleted, setIsGameCompleted] = useState(false);
   
-  const time = useGameTimer(isGameStarted, isGameCompleted);
   const [showModal, setShowModal] = useState(false);
  
   const [username, setUsername] = useState('');
@@ -32,6 +29,8 @@ function Game({ isGameStarted, setIsGameStarted, level }) {
   const [boxX, setBoxX] = useState(0);
   const [boxY, setBoxY] = useState(0);
 
+  const [error, setError] = useState(null);
+  
   useEffect(() => {
     setIsGameStarted(true);
     window.scrollTo(0,0);
@@ -61,8 +60,6 @@ function Game({ isGameStarted, setIsGameStarted, level }) {
         console.error(error);
       }
     }
-
-    setIsCharacterBoxVisible(true);
   };
 
   React.useLayoutEffect(() => {
@@ -117,7 +114,7 @@ function Game({ isGameStarted, setIsGameStarted, level }) {
 
   const handleSubmit = async () => {
     if (!username) {
-      alert('Please enter a username');
+      setError('Please enter a username');
       return;
     }
 
@@ -190,7 +187,11 @@ function Game({ isGameStarted, setIsGameStarted, level }) {
           <h2>Level Complete!</h2>
           <p>Your time: {time}</p>
           <input type="text" placeholder="Enter your username" value={username} onChange={(e) => setUsername(e.target.value)} />
+        {error && <div className='error'>{error}</div>}
+        <div className='btn-modal-container'>
+          <button className='btn-home' onClick={() => navigate('/')}>Return Home</button>
           <button className='btn-submit' onClick={handleSubmit}>Submit</button>
+        </div>
         </Modal>
       )}
 </div>

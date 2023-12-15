@@ -148,13 +148,13 @@
     background-color: rgb(255, 0, 85);
 }
 
-.levels-header {
+.levels-header, .leaderboard-header {
     display: flex;
     justify-content: center;
     padding: 30px;
 }
 
-.levels-header h1 {
+.levels-header h1, .leaderboard-header h1 {
     font-family: 'Titan One', sans-serif;
     letter-spacing: 2px;
     font-size: 2.8rem;
@@ -250,18 +250,23 @@
     border-radius: 10px;
     transition: 0.3s;
     background-color: rgb(44, 44, 44);
-    gap: 15px;
+    gap: 5px;
     transition: all 0.2s ease-in-out;
     border: 5px solid transparent;
 }
 
 .leaderboard-card:hover {
     cursor: pointer;
-    border: 5px solid rgb(255, 0, 85);
+    background-color: rgb(255, 0, 85);
 }
 
 .leaderboard-card.selected {
-    border: 5px solid rgb(255, 0, 85)
+    background-color: rgb(255, 0, 85);
+}
+
+.leaderboard-info {
+    font-size: 0.9rem;
+    padding: 6px;
 }
 
 .h2-leaderboard {
@@ -408,7 +413,7 @@
     }
 
     .btn-play {
-        width: 22%;
+        width: 21%;
     }
 
     .how-to-play-container {

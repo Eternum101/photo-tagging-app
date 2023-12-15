@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Header.css'; 
-import useGameTimer from '../hooks/useGameTimer';
 import { IoMdArrowDropdown } from "react-icons/io";
 
-function Header({ isGameStarted, characterImage, isGameCompleted }) {
-      const time = useGameTimer(isGameStarted, isGameCompleted);
-
+function Header({ isGameStarted, characterImage, time }) {
 
       const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 

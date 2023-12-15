@@ -119,7 +119,7 @@ function SplashScreen({setLevel, setIsGameStarted}) {
                 <h1>Select Level</h1>
             </div>
         <div className="level-card-container">
-            <div className='level-card'>
+            <div className='level-card' onClick={() => handleLevelSelection(1)}>
                 <div className='level-image'>
                     <img src={levelOneImage} alt="Level One"/>
                 </div>
@@ -132,7 +132,7 @@ function SplashScreen({setLevel, setIsGameStarted}) {
                     </button>
                 </div>
             </div>
-            <div className='level-card'>
+            <div className='level-card' onClick={() => handleLevelSelection(2)}>
                 <div className='level-image'>
                     <img src={levelTwoImage} alt="Level Two"/>
                 </div>
@@ -145,7 +145,7 @@ function SplashScreen({setLevel, setIsGameStarted}) {
                     </button>
                 </div>
             </div>
-            <div className='level-card'>
+            <div className='level-card' onClick={() => handleLevelSelection(3)}>
                 <div className='level-image'>
                     <img src={levelThreeImage} alt="Level Three"/>
                 </div>
@@ -161,7 +161,7 @@ function SplashScreen({setLevel, setIsGameStarted}) {
         </div>
     </div>
     <div className='leaderboard-container' id='leaderboard'>
-            <div className='levels-header'>
+            <div className='leaderboard-header'>
                 <h1>Leaderboard</h1>
             </div>
         <div className="leaderboard-card-container">
@@ -170,7 +170,7 @@ function SplashScreen({setLevel, setIsGameStarted}) {
                 <div className='level-image'>
                     <img src={levelOneImage} alt="Level One"/>
                 </div>
-                <div className='level-info'>
+                <div className='leaderboard-info'>
                     <h2>Level 1</h2>
                 </div>
             </div>
@@ -179,7 +179,7 @@ function SplashScreen({setLevel, setIsGameStarted}) {
                 <div className='level-image'>
                     <img src={levelTwoImage} alt="Level Two"/>
                 </div>
-                <div className='level-info'>
+                <div className='leaderboard-info'>
                     <h2>Level 2</h2>
                 </div>
             </div>
@@ -188,7 +188,7 @@ function SplashScreen({setLevel, setIsGameStarted}) {
                 <div className='level-image'>
                     <img src={levelThreeImage} alt="Level Three"/>
                 </div>
-                <div className='level-info'>
+                <div className='leaderboard-info'>
                     <h2>Level 3</h2>
                 </div>
             </div>

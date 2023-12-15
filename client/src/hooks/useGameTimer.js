@@ -17,8 +17,10 @@ const useGameTimer = (isGameStarted, isGameCompleted) => {
       }
     }, 1000);
 
-    return () => clearInterval(timer);
-  }, [isGameStarted, isGameCompleted]);
+    return () => {
+      clearInterval(timer);
+    };
+}, [isGameStarted, isGameCompleted]);
 
   // Format seconds to HH:MM:SS
   const hours = Math.floor(seconds / 3600).toString().padStart(2, '0');

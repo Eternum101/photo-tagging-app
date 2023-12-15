@@ -21,7 +21,14 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
 }
 
-.btn-submit {
+.btn-modal-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.btn-submit, .btn-home {
   display: flex;
   justify-content: center;
   background-color: rgb(255, 0, 85);
@@ -33,9 +40,10 @@
   font-weight: 700;
   cursor: pointer;
   transition: all 150ms ease-in-out;
+  width: 100%;
 }
 
-.btn-submit:hover {
+.btn-submit:hover, .btn-home:hover {
   background-color: rgb(221, 0, 74);
 }
 
