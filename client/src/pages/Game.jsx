@@ -44,9 +44,7 @@ function Game({ setIsGameStarted, level, setIsGameCompleted, time }) {
   const handleCharacterClick = async (event) => {
     const rect = event.target.getBoundingClientRect();
     setRect(rect);
-    const x = ((event.clientX - rect.left) / rect.width) * 100;
-    const y = ((event.clientY - rect.top) / rect.height) * 100;
-  
+    
     setOriginalClickX(event.clientX - rect.left);
     setOriginalClickY(event.clientY - rect.top);
   
