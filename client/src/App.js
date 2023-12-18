@@ -7,18 +7,25 @@ import useGameTimer from './hooks/useGameTimer';
 
 function App() {
   const [isGameStarted, setIsGameStarted] = useState(false);
-  const [level, setLevel] = useState(1);
+  const [level, setLevel] = useState(0);
   const [characterImage, setCharacterImage] = useState([]);
   const [isGameCompleted, setIsGameCompleted] = useState(false);
   const time = useGameTimer(isGameStarted, isGameCompleted);
   const [isSplashScreen, setIsSplashScreen] = useState(true);
   
   useEffect(() => {
+    const currentLevel = window.location.pathname.split('/')[2];
+    if (currentLevel) {
+      setLevel(Number(currentLevel));
+    }
+  }, []);
+
+  useEffect(() => {
     if (isGameStarted) {
       fetch(`/api/character/${level}`)
-        .then(response => response.json())
-        .then(data => setCharacterImage(data))
-        .catch(error => console.error('Error:', error));
+      .then(response => response.json())
+      .then(data => setCharacterImage(data))
+      .catch(error => console.error('Error:', error));
     }
   }, [level, isGameStarted]);
 
@@ -26,8 +33,8 @@ function App() {
     <Router>
       <Header key={level} isGameStarted={isGameStarted} setIsGameStarted={setIsGameStarted} isSplashScreen={isSplashScreen} characterImage={characterImage} isGameCompleted={isGameCompleted} time={time}/>
       <Routes>
-      <Route path='/' element={<SplashScreen setLevel={setLevel} setIsGameStarted={setIsGameStarted} setIsSplashScreen={setIsSplashScreen} setIsGameCompleted={setIsGameCompleted}/>}></Route>
-        <Route path='/game' element={<Game isGameStarted={isGameStarted} setIsGameStarted={setIsGameStarted} level={level} setIsGameCompleted={setIsGameCompleted} time={time}/>}/>
+      <Route path='/' element={<SplashScreen setLevel={setLevel} isGameStarted={isGameStarted} setIsGameStarted={setIsGameStarted} setIsSplashScreen={setIsSplashScreen} setIsGameCompleted={setIsGameCompleted}/>}></Route>
+        <Route path='/game/:level' element={<Game isGameStarted={isGameStarted} setIsGameStarted={setIsGameStarted} level={level} setLevel={setLevel} setIsGameCompleted={setIsGameCompleted} time={time} setIsSplashScreen={setIsSplashScreen}/>}/>
       </Routes>
     </Router>
   )

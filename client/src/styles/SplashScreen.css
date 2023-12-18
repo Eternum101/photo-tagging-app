@@ -404,6 +404,11 @@
         margin: 20px;
     }
 
+    .heading-info {
+        justify-content: center;
+        align-items: center;
+    }
+
     .heading-info h2, span {
         font-size: 3rem;
     }
@@ -418,6 +423,7 @@
 
     .btn-play {
         width: 21%;
+        justify-content: center;
     }
 
     .how-to-play-container {

@@ -7,7 +7,7 @@ import axios from 'axios';
 import Modal from '../components/Modal';
 import { useNavigate } from 'react-router-dom';
 
-function Game({ isGameStarted, setIsGameStarted, level, setIsGameCompleted, time }) {
+function Game({ setIsGameStarted, level, setIsGameCompleted, time, setIsSplashScreen }) {
   const [characters, setCharacters] = useState([]);
   const [foundCharacter, setFoundCharacter] = useState([]);
   const [isCharacterBoxVisible, setIsCharacterBoxVisible] = useState(false);
@@ -34,7 +34,8 @@ function Game({ isGameStarted, setIsGameStarted, level, setIsGameCompleted, time
   
   useEffect(() => {
     setIsGameStarted(true);
-    setFoundCharacter([]);
+    setFoundCharacter([]); 
+    setIsSplashScreen(false);
     window.scrollTo(0,0);
   }, [level]); 
 
@@ -171,7 +172,7 @@ function Game({ isGameStarted, setIsGameStarted, level, setIsGameCompleted, time
     <div className="character-box">
       {characters.filter(character => !foundCharacter.includes(character.name)).map(character => (
         <div key={character.name} className="character" onClick={() => handleCharacterSelect(character)}>
-          <img src={character.image} alt={character.name} />
+          <img src={`/${character.image}`} alt={character.name} />
           {character.name}
         </div>
       ))}

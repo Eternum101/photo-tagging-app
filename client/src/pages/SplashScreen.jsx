@@ -24,7 +24,7 @@ function SplashScreen({setLevel, setIsGameStarted, setIsSplashScreen, setIsGameC
     const handleLevelSelection = (selectedLevel) => {
         setLevel(selectedLevel);
         setIsGameStarted(true);
-        navigate('/game');
+        navigate(`/game/${selectedLevel}`);
       };
 
    const descriptionInfo = {

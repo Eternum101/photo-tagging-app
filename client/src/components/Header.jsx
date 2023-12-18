@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import '../styles/Header.css'; 
 import { IoMdArrowDropdown } from "react-icons/io";
 
-function Header({ isSplashScreen, characterImage, time }) {
+function Header({ isGameStarted, isSplashScreen, characterImage, time }) {
 
       const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
@@ -12,7 +12,7 @@ function Header({ isSplashScreen, characterImage, time }) {
       };
 
       return (
-        <header className={isSplashScreen  ? 'sticky' : ''}>
+        <header className={isGameStarted ? 'sticky' : ''}>
             <nav>
                 <div className="logo">
                     <Link to='/'><h1>PhotoTagApp.</h1></Link>
