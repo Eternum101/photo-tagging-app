@@ -11,7 +11,8 @@ function App() {
   const [characterImage, setCharacterImage] = useState([]);
   const [isGameCompleted, setIsGameCompleted] = useState(false);
   const time = useGameTimer(isGameStarted, isGameCompleted);
-
+  const [isSplashScreen, setIsSplashScreen] = useState(true);
+  
   useEffect(() => {
     if (isGameStarted) {
       fetch(`/api/character/${level}`)
@@ -23,9 +24,9 @@ function App() {
 
   return (
     <Router>
-      <Header isGameStarted={isGameStarted} setIsGameStarted={setIsGameStarted} characterImage={characterImage} isGameCompleted={isGameCompleted} time={time}/>
+      <Header key={level} isGameStarted={isGameStarted} setIsGameStarted={setIsGameStarted} isSplashScreen={isSplashScreen} characterImage={characterImage} isGameCompleted={isGameCompleted} time={time}/>
       <Routes>
-        <Route path='/' element={<SplashScreen setLevel={setLevel} setIsGameStarted={setIsGameStarted}/>}></Route>
+      <Route path='/' element={<SplashScreen setLevel={setLevel} setIsGameStarted={setIsGameStarted} setIsSplashScreen={setIsSplashScreen} setIsGameCompleted={setIsGameCompleted}/>}></Route>
         <Route path='/game' element={<Game isGameStarted={isGameStarted} setIsGameStarted={setIsGameStarted} level={level} setIsGameCompleted={setIsGameCompleted} time={time}/>}/>
       </Routes>
     </Router>

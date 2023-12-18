@@ -9,19 +9,23 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios'; 
 import { formatTime } from '../hooks/timeFormat';
 
-function SplashScreen({setLevel, setIsGameStarted}) {
+function SplashScreen({setLevel, setIsGameStarted, setIsSplashScreen, setIsGameCompleted}) {
 
     useEffect(() => {
+        setIsSplashScreen(true);
         setIsGameStarted(false);
+        setIsGameCompleted(false);
         fetchLeaderboard(1);
-      }, []);    
+        return () => setIsSplashScreen(false);
+      }, []);        
 
     const navigate = useNavigate();
 
     const handleLevelSelection = (selectedLevel) => {
         setLevel(selectedLevel);
+        setIsGameStarted(true);
         navigate('/game');
-    };
+      };
 
    const descriptionInfo = {
         'Objective': 'The main objective of the game is to find specific characters or items hidden within a larger image. The character or item you’re looking for will be given to you at the start of each level.',

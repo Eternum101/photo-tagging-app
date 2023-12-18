@@ -378,6 +378,10 @@
         width: 100%;
     }
 
+    .leaderboard-header h1 {
+        font-size: 2rem;
+    }
+
     .leaderboard-card-container {
         flex-direction: column;
         gap: 50px;
@@ -433,10 +437,6 @@
     .btn-container {
         width: 100%;
         gap: 20px;
-    }
-
-    .levels-header h1 {
-        font-size: 2rem;
     }
 
     .level-card-container {

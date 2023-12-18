@@ -7,7 +7,7 @@ import axios from 'axios';
 import Modal from '../components/Modal';
 import { useNavigate } from 'react-router-dom';
 
-function Game({ setIsGameStarted, level, setIsGameCompleted, time }) {
+function Game({ isGameStarted, setIsGameStarted, level, setIsGameCompleted, time }) {
   const [characters, setCharacters] = useState([]);
   const [foundCharacter, setFoundCharacter] = useState([]);
   const [isCharacterBoxVisible, setIsCharacterBoxVisible] = useState(false);
@@ -30,16 +30,13 @@ function Game({ setIsGameStarted, level, setIsGameCompleted, time }) {
   const [boxY, setBoxY] = useState(0);
 
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   
   useEffect(() => {
     setIsGameStarted(true);
+    setFoundCharacter([]);
     window.scrollTo(0,0);
-  }, []);
-
-  const completeGame = () => {
-    setIsGameCompleted(true);
-    setShowModal(true);
-  };
+  }, [level]); 
 
   const handleCharacterClick = async (event) => {
     const rect = event.target.getBoundingClientRect();
@@ -51,12 +48,14 @@ function Game({ setIsGameStarted, level, setIsGameCompleted, time }) {
     setIsCharacterBoxVisible(prevVisible => !prevVisible);
   
     if (!isCharacterBoxVisible) {
+      setIsLoading(true);
       try {
         const response = await axios.get(`/api/character/${level}`);
         setCharacters(response.data);
       } catch (error) {
         console.error(error);
       }
+      setIsLoading(false);
     }
   };
 
@@ -95,9 +94,6 @@ function Game({ setIsGameStarted, level, setIsGameCompleted, time }) {
         setIsCharacterFound(true); 
         setFoundCharacter(prevFound => {
           const updatedFound = [...prevFound, character.name];
-          if (updatedFound.length === characters.length) {
-            completeGame();
-          }
           return updatedFound;
         });
         setFoundCoordinates(prevCoords => [...prevCoords, { x: character.coordinates.x, y: character.coordinates.y }]);
@@ -109,6 +105,13 @@ function Game({ setIsGameStarted, level, setIsGameCompleted, time }) {
     }
     setIsCharacterBoxVisible(false);
   };
+
+  useEffect(() => {
+    if (!isLoading && foundCharacter.length === characters.length) {
+      setIsGameCompleted(true);
+      setShowModal(true);
+    }
+  }, [foundCharacter, characters, isLoading]);
 
   const handleSubmit = async () => {
     if (!username) {
@@ -187,7 +190,9 @@ function Game({ setIsGameStarted, level, setIsGameCompleted, time }) {
           <input type="text" placeholder="Enter your username" value={username} onChange={(e) => setUsername(e.target.value)} />
         {error && <div className='error'>{error}</div>}
         <div className='btn-modal-container'>
-          <button className='btn-home' onClick={() => navigate('/')}>Return Home</button>
+        <button className='btn-home' onClick={() => {
+          navigate('/');
+        }}>Return Home</button>
           <button className='btn-submit' onClick={handleSubmit}>Submit</button>
         </div>
         </Modal>

@@ -19,10 +19,15 @@ a {
 
 .logo {
     font-size: 1.8rem;
+    transition: all 150ms ease-in-out;
 }
 
 .logo h1 {
     font-family: 'Titan One', sans-serif;
+}
+
+.logo:hover {
+    transform: scale(1.1);
 }
 
 .nav-right {
