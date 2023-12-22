@@ -407,6 +407,7 @@
     .heading-info {
         justify-content: center;
         align-items: center;
+        text-align: center;
     }
 
     .heading-info h2, span {
