@@ -14,31 +14,24 @@ A Photo Tagging Application similar to 'Where's Waldo' developed using the MERN 
 ## Screenshots
 
 ### Initial Screen
-![](screenshots/initial-screen-inventory-app.png) 
+![](screenshots/home-1-photo-tagging-app.png)
+![](screenshots/home-2-photo-tagging-app.png)
+![](screenshots/home-3-photo-tagging-app.png)
 
 ### Items Page
 ![](screenshots/items-page-inventory-app.png) 
 
-### Add Item
-![](screenshots/add-item-inventory-app.png)
+### Level 1
+![](screenshots/level-1-photo-tagging-app.png)
 
-### Individual Items Page
-![](screenshots/individual-item-page-inventory-app.png)
+### Level 2
+![](screenshots/level-2-photo-tagging-app.png)
 
-### Update Item
-![](screenshots/update-item-inventory-app.png)
+### Level 3
+![](screenshots/level-3-photo-tagging-app.png)
 
-### Categories Page
-![](screenshots/categories-page-inventory-app.png)
-
-### Add Category
-![](screenshots/add-category-inventory-app.png)
-
-### Individual Categories Page
-![](screenshots/individual-category-page-inventory-app.png)
-
-### Update Category
-![](screenshots/update-category-inventory-app.png)
+### Level Complete Form
+![](screenshots/level-complete-photo-tagging-app.png)
 
 [Back to Top](#photo-tagging-app)
 
