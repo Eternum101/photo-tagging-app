@@ -62,6 +62,7 @@ A Photo Tagging Application similar to 'Where's Waldo' developed using the MERN 
 - Targeting Box That Contains a List of Possible Characters
 - Appropiate Feedback if Character Selected is Either Correct or Incorrect
 - Timer & Leaderboard System
+- Level Complete Form
 - Responsive User Interface (Includes Methods for Click Logic That Will Normalize Coordinates Across Different Screensizes)
 
 [Back to Top](#photo-tagging-app)
