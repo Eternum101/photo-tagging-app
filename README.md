@@ -18,9 +18,6 @@ A Photo Tagging Application similar to 'Where's Waldo' developed using the MERN 
 ![](screenshots/home-2-photo-tagging-app.png)
 ![](screenshots/home-3-photo-tagging-app.png)
 
-### Items Page
-![](screenshots/items-page-inventory-app.png) 
-
 ### Level 1
 ![](screenshots/level-1-photo-tagging-app.png)
 
