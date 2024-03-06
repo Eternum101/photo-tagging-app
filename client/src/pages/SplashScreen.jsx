@@ -8,6 +8,7 @@ import levelThreeImage from '../assets/images/wimmelbilder-level-3.jpg';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'; 
 import { formatTime } from '../hooks/timeFormat';
+import { URL } from '../App';
 
 function SplashScreen({setLevel, setIsGameStarted, setIsSplashScreen, setIsGameCompleted}) {
 
@@ -52,7 +53,7 @@ function SplashScreen({setLevel, setIsGameStarted, setIsSplashScreen, setIsGameC
 
     const fetchLeaderboard = async (level) => {
         try {
-          const response = await axios.get(`/api/scores/leaderboard/${level}`);
+          const response = await axios.get(`${URL}/api/scores/leaderboard/${level}`);
           setLeaderboardData(response.data);
         } catch (error) {
           console.error(error);

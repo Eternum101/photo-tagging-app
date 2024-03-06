@@ -24,7 +24,7 @@ function App() {
 
   useEffect(() => {
     if (isGameStarted) {
-      fetch(`/api/character/${level}`)
+      fetch(`${URL}/api/character/${level}`)
       .then(response => response.json())
       .then(data => setCharacterImage(data))
       .catch(error => console.error('Error:', error));

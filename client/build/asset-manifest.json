@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/static/css/main.4d85f6fa.css",
+    "main.js": "/static/js/main.b88ace0b.js",
+    "static/js/787.d5fa4d18.chunk.js": "/static/js/787.d5fa4d18.chunk.js",
+    "static/media/wimmelbilder-level-1.jpg": "/static/media/wimmelbilder-level-1.c06eeff9582359dff0bc.jpg",
+    "static/media/wimmelbilder-level-3.jpg": "/static/media/wimmelbilder-level-3.46923f2b940d0e19b2bb.jpg",
+    "static/media/carmen.png": "/static/media/carmen.6ab8cf81a8a8ecf1b026.png",
+    "static/media/wimmelbilder-level-2.png": "/static/media/wimmelbilder-level-2.2a052f5f53685c51139c.png",
+    "index.html": "/index.html",
+    "main.4d85f6fa.css.map": "/static/css/main.4d85f6fa.css.map",
+    "main.b88ace0b.js.map": "/static/js/main.b88ace0b.js.map",
+    "787.d5fa4d18.chunk.js.map": "/static/js/787.d5fa4d18.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4d85f6fa.css",
+    "static/js/main.b88ace0b.js"
+  ]
+}

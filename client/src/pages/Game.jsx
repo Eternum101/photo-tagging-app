@@ -6,6 +6,7 @@ import '../styles/Game.css';
 import axios from 'axios'; 
 import Modal from '../components/Modal';
 import { useNavigate } from 'react-router-dom';
+import { URL } from '../App';
 
 function Game({ setIsGameStarted, level, setIsGameCompleted, time, setIsSplashScreen }) {
   const [characters, setCharacters] = useState([]);
@@ -51,7 +52,7 @@ function Game({ setIsGameStarted, level, setIsGameCompleted, time, setIsSplashSc
     if (!isCharacterBoxVisible) {
       setIsLoading(true);
       try {
-        const response = await axios.get(`/api/character/${level}`);
+        const response = await axios.get(`${URL}/api/character/${level}`);
         setCharacters(response.data);
       } catch (error) {
         console.error(error);
@@ -124,7 +125,7 @@ function Game({ setIsGameStarted, level, setIsGameCompleted, time, setIsSplashSc
     const seconds = parseInt(timeParts[0]) * 3600 + parseInt(timeParts[1]) * 60 + parseInt(timeParts[2]);
   
     try {
-      const response = await axios.post('/api/scores', {
+      const response = await axios.post(`${URL}/api/scores`, {
         username,
         time: seconds,
         level
