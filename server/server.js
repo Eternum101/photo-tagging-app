@@ -14,7 +14,8 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.use(express.json());
 app.use(cors({
-    origin: ["http://localhost:3000", ],
+    origin: ["http://localhost:3000", 
+    "https://photo-tagging-app-lzga.onrender.com"],
 }));
 
 app.use('/images', express.static('public/images'));

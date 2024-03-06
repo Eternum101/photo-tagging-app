@@ -56,6 +56,7 @@ input {
   border: 2px solid #818181;
   outline: none;
   transition: all 150ms ease-in-out;
+  width: 300px;
 }
 
 input:hover {

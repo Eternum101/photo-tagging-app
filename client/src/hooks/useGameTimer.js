@@ -4,8 +4,6 @@ const useGameTimer = (isGameStarted, isGameCompleted) => {
   const [seconds, setSeconds] = useState(0);
 
   useEffect(() => {
-    console.log('isGameStarted:', isGameStarted);
-    console.log('isGameCompleted:', isGameCompleted);
 
     if (!isGameStarted) {
       setSeconds(0);

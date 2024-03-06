@@ -91,7 +91,6 @@ function Game({ setIsGameStarted, level, setIsGameCompleted, time, setIsSplashSc
       const dy = Math.abs(character.coordinates.y - clickYPercent);
   
       if (dx < 3 && dy < 3) {
-        console.log(`You found ${character.name} at (${clickXPercent.toFixed(2)}%, ${clickYPercent.toFixed(2)}%)`);
         setPopupMessage(`You found ${character.name}!`);
         setIsCharacterFound(true); 
         setFoundCharacter(prevFound => {
@@ -100,7 +99,6 @@ function Game({ setIsGameStarted, level, setIsGameCompleted, time, setIsSplashSc
         });
         setFoundCoordinates(prevCoords => [...prevCoords, { x: character.coordinates.x, y: character.coordinates.y }]);
       } else {
-        console.log(`Sorry, ${character.name} is not at (${clickXPercent.toFixed(2)}%, ${clickYPercent.toFixed(2)}%)`);
         setPopupMessage(`Sorry, ${character.name} is not here.`);
         setIsCharacterFound(false);
       }
@@ -130,7 +128,6 @@ function Game({ setIsGameStarted, level, setIsGameCompleted, time, setIsSplashSc
         time: seconds,
         level
       });
-      console.log('Score submitted:', response.data);
       navigate('/');
     } catch (error) {
       console.error('Error submitting score:', error);
