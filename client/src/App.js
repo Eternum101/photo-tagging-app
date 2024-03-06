@@ -5,6 +5,8 @@ import Game from './pages/Game';
 import { useState, useEffect } from 'react';
 import useGameTimer from './hooks/useGameTimer';
 
+export const URL = process.env.REACT_APP_SERVER_URL;
+
 function App() {
   const [isGameStarted, setIsGameStarted] = useState(false);
   const [level, setLevel] = useState(0);
