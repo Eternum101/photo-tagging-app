@@ -1,6 +1,6 @@
 # Photo Tagging App
 
-View Demo
+🔗 [View Demo](https://photo-tagging-app-lzga.onrender.com)
 
 ## Table of Contents
 - [About The Project](#about-the-project)
