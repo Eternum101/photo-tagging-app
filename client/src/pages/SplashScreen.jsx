@@ -9,8 +9,11 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios'; 
 import { formatTime } from '../hooks/timeFormat';
 import { URL } from '../App';
+import Loading from '../components/Loading';
 
 function SplashScreen({setLevel, setIsGameStarted, setIsSplashScreen, setIsGameCompleted}) {
+
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         setIsSplashScreen(true);
@@ -53,12 +56,18 @@ function SplashScreen({setLevel, setIsGameStarted, setIsSplashScreen, setIsGameC
 
     const fetchLeaderboard = async (level) => {
         try {
+          setIsLoading(true); 
           const response = await axios.get(`${URL}/api/scores/leaderboard/${level}`);
-          setLeaderboardData(response.data);
+          setLeaderboardData(response.data); 
         } catch (error) {
           console.error(error);
         }
-      };     
+        setIsLoading(false);
+      };
+      
+    if (isLoading) {
+        return <Loading />;
+    }
 
     return (
         <>
