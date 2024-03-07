@@ -19,7 +19,8 @@ function SplashScreen({setLevel, setIsGameStarted, setIsSplashScreen, setIsGameC
         setIsSplashScreen(true);
         setIsGameStarted(false);
         setIsGameCompleted(false);
-        fetchLeaderboard(1);
+        setIsLoading(true);
+        fetchLeaderboard(1).then(() => setIsLoading(false));
         return () => setIsSplashScreen(false);
       }, []);        
 
@@ -56,13 +57,11 @@ function SplashScreen({setLevel, setIsGameStarted, setIsSplashScreen, setIsGameC
 
     const fetchLeaderboard = async (level) => {
         try {
-          setIsLoading(true); 
           const response = await axios.get(`${URL}/api/scores/leaderboard/${level}`);
           setLeaderboardData(response.data); 
         } catch (error) {
           console.error(error);
         }
-        setIsLoading(false);
       };
       
     if (isLoading) {
