@@ -1,6 +1,6 @@
 # Photo Tagging App
 
-🔗 [View Demo](https://photo-tagging-app-lzga.onrender.com)
+🔗 [View Demo](https://photo-tagging-app-lzga.onrender.com) **(Please Allow Up to 50 Seconds for Website to Load from Cold Start)**
 
 ## Table of Contents
 - [About The Project](#about-the-project)
